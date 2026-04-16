@@ -1,0 +1,29 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+**/dist/
+build/
+**/build/
+target/
+**/target/
+
+# Local tools and binaries
+**/backend/local-*/
+**/jdk-*/
+**/apache-maven-*/
+
+# Logs
+*.log
+**/logs/
+
+# Misc
+.DS_Store
+.env
+.idea/
+.vscode/
+*.zip
+*.tar.gz
+.git/index.lock

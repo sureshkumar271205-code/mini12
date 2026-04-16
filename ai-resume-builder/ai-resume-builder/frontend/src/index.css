@@ -1,0 +1,236 @@
+:root {
+  --bg-color: #f0f4ff;
+  --card-bg: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --accent-primary: #1d4ed8;
+  --accent-secondary: #4338ca;
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --glass: rgba(255, 255, 255, 0.8);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f0f4ff;
+  color: #111827;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  padding: 1rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 35px -5px rgba(225, 29, 116, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: rgba(225, 29, 116, 0.15);
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--accent-primary);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 4px rgba(225, 29, 116, 0.15);
+}
+
+button {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.score-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 auto 2rem;
+  background: conic-gradient(var(--success) var(--percentage), #334155 0);
+  position: relative;
+}
+
+.score-circle::before {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--card-bg);
+}
+
+.score-text {
+  position: relative;
+  z-index: 10;
+}
+
+.keyword-tag {
+  display: inline-block;
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.suggestion-item {
+  background: rgba(59, 130, 246, 0.1);
+  border-left: 4px solid var(--accent-primary);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .container,
+  .header,
+  .card,
+  footer,
+  button {
+    display: none;
+  }
+
+  .resume-print-area,
+  #resume-preview {
+    display: block !important;
+    position: relative;
+    /* Changed from absolute to flow naturally */
+    width: 210mm;
+    min-height: 297mm;
+    /* Ensure at least A4 */
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    background: white;
+    visibility: visible;
+    overflow: visible;
+    /* Ensure content isn't clipped */
+  }
+}
