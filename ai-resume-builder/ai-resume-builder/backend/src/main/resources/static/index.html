@@ -1,17 +1,965 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Resume Builder</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-D0uTQU66.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CmgONKE-.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeAI – Smart Resume Builder for Freshers & Experienced</title>
+  <meta name="description" content="Build a professional resume in minutes with ResumeAI. Choose between our Fresher or Experienced module and get AI-powered suggestions tailored to your profile." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-text">Resume<span class="brand-accent">AI</span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#modules" class="nav-link">Modules</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#templates" class="nav-link">Templates</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-ghost" id="loginBtn" onclick="openLoginModal()">Login</button>
+        <button class="btn-ghost" id="signupBtn" onclick="openRegisterModal()" style="margin-right: 10px;">Sign Up</button>
+        <button class="btn-primary" id="getStartedBtn" onclick="scrollToModules()">Get Started</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>AI-Powered Resume Builder</span>
+      </div>
+      <h1 class="hero-title">
+        Build Resumes That<br />
+        <span class="gradient-text">Get You Hired</span>
+      </h1>
+      <p class="hero-subtitle">
+        Whether you're just starting out or a seasoned professional,<br />
+        our AI crafts the perfect resume tailored for <em>you</em>.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-hero-primary" onclick="scrollToModules()">
+          <span>Start Building</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-hero-ghost" onclick="document.getElementById('templates').scrollIntoView({behavior:'smooth'})">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span>See Templates</span>
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">50K+</span>
+          <span class="stat-label">Resumes Created</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">94%</span>
+          <span class="stat-label">Interview Rate</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">200+</span>
+          <span class="stat-label">Resume Templates</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="resume-preview-card">
+        <div class="rpc-header">
+          <div class="rpc-avatar"></div>
+          <div class="rpc-info">
+            <div class="rpc-name"></div>
+            <div class="rpc-title"></div>
+          </div>
+        </div>
+        <div class="rpc-section">
+          <div class="rpc-label"></div>
+          <div class="rpc-line"></div>
+          <div class="rpc-line short"></div>
+          <div class="rpc-line medium"></div>
+        </div>
+        <div class="rpc-section">
+          <div class="rpc-label"></div>
+          <div class="rpc-skills">
+            <div class="skill-chip"></div>
+            <div class="skill-chip"></div>
+            <div class="skill-chip"></div>
+            <div class="skill-chip"></div>
+          </div>
+        </div>
+        <div class="rpc-section">
+          <div class="rpc-label"></div>
+          <div class="rpc-line"></div>
+          <div class="rpc-line short"></div>
+        </div>
+        <div class="rpc-ai-badge">
+          <span>✨ AI Optimized</span>
+        </div>
+      </div>
+      <div class="floating-tag tag-1">🎯 ATS Friendly</div>
+      <div class="floating-tag tag-2">⚡ 5-min Setup</div>
+      <div class="floating-tag tag-3">🤖 AI Powered</div>
+    </div>
+  </section>
+
+  <!-- ===== MODULES SECTION ===== -->
+  <section class="modules-section" id="modules">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Choose Your Path</div>
+        <h2 class="section-title">Which Best Describes You?</h2>
+        <p class="section-subtitle">Select the module that fits your experience level. Our AI will customize everything for you.</p>
+      </div>
+
+      <div class="modules-grid">
+        <!-- FRESHER MODULE -->
+        <div class="module-card fresher-card" id="fresherCard" onclick="openModule('fresher')">
+          <div class="module-glow fresher-glow"></div>
+          <div class="module-icon-wrap fresher-icon-wrap">
+            <div class="module-icon">🎓</div>
+          </div>
+          <div class="module-badge fresher-badge">Fresher</div>
+          <h3 class="module-title">Just Starting Out</h3>
+          <p class="module-desc">
+            Perfect for students, recent graduates, and career-switchers with little or no professional experience.
+          </p>
+          <ul class="module-features">
+            <li><span class="feat-icon">✓</span> Education & Projects Focused</li>
+            <li><span class="feat-icon">✓</span> Internships & Certifications</li>
+            <li><span class="feat-icon">✓</span> Skills & Achievements Highlight</li>
+            <li><span class="feat-icon">✓</span> AI Objective Statement Generator</li>
+            <li><span class="feat-icon">✓</span> Extracurricular Activities Section</li>
+          </ul>
+          <div class="module-cta">
+            <button class="btn-module fresher-btn" id="fresherModuleBtn">
+              <span>Build Fresher Resume</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div class="module-tag">No Experience? No Problem!</div>
+        </div>
+
+        <!-- EXPERIENCED MODULE -->
+        <div class="module-card exp-card" id="expCard" onclick="openModule('experienced')">
+          <div class="module-glow exp-glow"></div>
+          <div class="module-icon-wrap exp-icon-wrap">
+            <div class="module-icon">💼</div>
+          </div>
+          <div class="module-badge exp-badge">Experienced</div>
+          <h3 class="module-title">Career Professional</h3>
+          <p class="module-desc">
+            For professionals with 1+ years of experience looking to land their next big opportunity.
+          </p>
+          <ul class="module-features">
+            <li><span class="feat-icon">✓</span> Work Experience Showcase</li>
+            <li><span class="feat-icon">✓</span> Achievements & Impact Metrics</li>
+            <li><span class="feat-icon">✓</span> Leadership & Management Skills</li>
+            <li><span class="feat-icon">✓</span> AI Career Summary Generator</li>
+            <li><span class="feat-icon">✓</span> Industry-Specific Optimization</li>
+          </ul>
+          <div class="module-cta">
+            <button class="btn-module exp-btn" id="expModuleBtn">
+              <span>Build Professional Resume</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div class="module-tag">Showcase Your Impact!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODAL: FRESHER ===== -->
+  <div class="modal-overlay" id="fresherModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('fresherModal')">✕</button>
+      <div class="modal-header fresher-modal-header">
+        <div class="modal-icon">🎓</div>
+        <h2>Fresher Resume Builder</h2>
+        <p>Let's build your first professional resume step by step</p>
+      </div>
+      <div class="modal-progress">
+        <div class="progress-bar">
+          <div class="progress-fill fresher-progress" id="fresherProgress" style="width:20%"></div>
+        </div>
+        <span class="progress-label" id="fresherProgressLabel">Step 1 of 5</span>
+      </div>
+
+      <form class="modal-form" id="fresherForm">
+        <!-- Step 1: Personal Info -->
+        <div class="form-step active" id="fStep1">
+          <h3 class="step-title">👤 Personal Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="f_name" placeholder="e.g. Priya Sharma" required />
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" id="f_email" placeholder="priya@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="f_phone" placeholder="+91 98765 43210" required />
+            </div>
+            <div class="form-group">
+              <label>City, State</label>
+              <input type="text" id="f_location" placeholder="Mumbai, Maharashtra" />
+            </div>
+            <div class="form-group full-width">
+              <label>LinkedIn Profile</label>
+              <input type="url" id="f_linkedin" placeholder="linkedin.com/in/priyasharma" />
+            </div>
+            <div class="form-group full-width">
+              <label>GitHub / Portfolio URL</label>
+              <input type="url" id="f_github" placeholder="github.com/priyasharma" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Education -->
+        <div class="form-step" id="fStep2">
+          <h3 class="step-title">🎓 Education</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Degree / Course *</label>
+              <input type="text" id="f_degree" placeholder="e.g. B.Tech in Computer Science" required />
+            </div>
+            <div class="form-group full-width">
+              <label>University / College *</label>
+              <input type="text" id="f_college" placeholder="e.g. IIT Bombay" required />
+            </div>
+            <div class="form-group">
+              <label>Graduation Year *</label>
+              <input type="text" id="f_gradyear" placeholder="e.g. 2024" required />
+            </div>
+            <div class="form-group">
+              <label>CGPA / Percentage</label>
+              <input type="text" id="f_cgpa" placeholder="e.g. 8.5 CGPA / 85%" />
+            </div>
+            <div class="form-group full-width">
+              <label>10th Board & Percentage</label>
+              <input type="text" id="f_tenth" placeholder="CBSE – 92%" />
+            </div>
+            <div class="form-group full-width">
+              <label>12th Board & Percentage</label>
+              <input type="text" id="f_twelfth" placeholder="CBSE – 89%" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Skills & Projects -->
+        <div class="form-step" id="fStep3">
+          <h3 class="step-title">⚡ Skills & Projects</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Technical Skills</label>
+              <input type="text" id="f_skills" placeholder="Python, Java, React, SQL, Git..." />
+              <small>Separate skills with commas</small>
+            </div>
+            <div class="form-group full-width">
+              <label>Soft Skills</label>
+              <input type="text" id="f_softskills" placeholder="Leadership, Communication, Problem-Solving..." />
+            </div>
+            <div class="form-group full-width">
+              <label>Project 1 Title</label>
+              <input type="text" id="f_proj1" placeholder="e.g. E-Commerce Website" />
+            </div>
+            <div class="form-group full-width">
+              <label>Project 1 Description</label>
+              <textarea id="f_proj1desc" rows="3" placeholder="Describe what you built, tech used, and impact..."></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label>Project 2 Title</label>
+              <input type="text" id="f_proj2" placeholder="e.g. Chat Application" />
+            </div>
+            <div class="form-group full-width">
+              <label>Project 2 Description</label>
+              <textarea id="f_proj2desc" rows="3" placeholder="Describe what you built, tech used, and impact..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Internship & Certifications -->
+        <div class="form-step" id="fStep4">
+          <h3 class="step-title">📜 Internships & Certifications</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Internship Company & Role</label>
+              <input type="text" id="f_intern_company" placeholder="e.g. TCS – Software Intern" />
+            </div>
+            <div class="form-group">
+              <label>Duration</label>
+              <input type="text" id="f_intern_duration" placeholder="June – Aug 2023" />
+            </div>
+            <div class="form-group full-width">
+              <label>Internship Responsibilities</label>
+              <textarea id="f_intern_desc" rows="3" placeholder="Describe your responsibilities and achievements..."></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label>Certifications</label>
+              <textarea id="f_certs" rows="3" placeholder="AWS Cloud Practitioner (2023)&#10;Google Data Analytics Certificate&#10;Coursera Python for Everybody"></textarea>
+              <small>One per line</small>
+            </div>
+            <div class="form-group full-width">
+              <label>Achievements / Awards</label>
+              <textarea id="f_achievements" rows="3" placeholder="Hackathon Winner – HackIndia 2023&#10;College Topper – 2021-2022"></textarea>
+              <small>One per line</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5: Career Objective -->
+        <div class="form-step" id="fStep5">
+          <h3 class="step-title">🎯 Career Objective & Summary</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Target Job Role *</label>
+              <input type="text" id="f_target_role" placeholder="e.g. Software Engineer, Data Analyst..." required />
+            </div>
+            <div class="form-group full-width">
+              <label>Target Industry</label>
+              <input type="text" id="f_industry" placeholder="e.g. IT, Finance, Healthcare..." />
+            </div>
+            <div class="form-group full-width">
+              <label>Career Objective</label>
+              <textarea id="f_objective" rows="4" placeholder="Write your career objective or click 'Generate with AI' to auto-generate..."></textarea>
+            </div>
+            <div class="form-group full-width">
+              <button type="button" class="btn-ai-generate" id="generateObjectiveBtn" onclick="generateObjective()">
+                <span>✨ Generate with AI</span>
+              </button>
+            </div>
+            <div class="form-group full-width">
+              <label>Preferred Resume Template</label>
+              <div class="template-selector">
+                <div class="tmpl-option active" onclick="selectTemplate(this, 'modern')" data-template="modern">
+                  <div class="tmpl-preview modern-tmpl"></div>
+                  <span>Modern</span>
+                </div>
+                <div class="tmpl-option" onclick="selectTemplate(this, 'classic')" data-template="classic">
+                  <div class="tmpl-preview classic-tmpl"></div>
+                  <span>Classic</span>
+                </div>
+                <div class="tmpl-option" onclick="selectTemplate(this, 'minimal')" data-template="minimal">
+                  <div class="tmpl-preview minimal-tmpl"></div>
+                  <span>Minimal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button type="button" class="btn-back" id="fresherBack" onclick="prevStep('fresher')" style="display:none">← Back</button>
+          <button type="button" class="btn-next fresher-next" id="fresherNext" onclick="nextStep('fresher')">Next →</button>
+          <button type="button" class="btn-generate" id="fresherGenerate" onclick="generateResume('fresher')" style="display:none">
+            ✨ Generate Resume
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: EXPERIENCED ===== -->
+  <div class="modal-overlay" id="expModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('expModal')">✕</button>
+      <div class="modal-header exp-modal-header">
+        <div class="modal-icon">💼</div>
+        <h2>Professional Resume Builder</h2>
+        <p>Showcase your experience and achievements</p>
+      </div>
+      <div class="modal-progress">
+        <div class="progress-bar">
+          <div class="progress-fill exp-progress" id="expProgress" style="width:20%"></div>
+        </div>
+        <span class="progress-label" id="expProgressLabel">Step 1 of 5</span>
+      </div>
+
+      <form class="modal-form" id="expForm">
+        <!-- Step 1: Personal Info -->
+        <div class="form-step active" id="eStep1">
+          <h3 class="step-title">👤 Personal Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="e_name" placeholder="e.g. Rahul Mehta" required />
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" id="e_email" placeholder="rahul@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="e_phone" placeholder="+91 98765 43210" required />
+            </div>
+            <div class="form-group">
+              <label>City, State</label>
+              <input type="text" id="e_location" placeholder="Bangalore, Karnataka" />
+            </div>
+            <div class="form-group full-width">
+              <label>LinkedIn Profile</label>
+              <input type="url" id="e_linkedin" placeholder="linkedin.com/in/rahulmehta" />
+            </div>
+            <div class="form-group">
+              <label>Current Job Title</label>
+              <input type="text" id="e_current_title" placeholder="e.g. Senior Software Engineer" />
+            </div>
+            <div class="form-group">
+              <label>Total Experience</label>
+              <input type="text" id="e_experience" placeholder="e.g. 5 years" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Work Experience -->
+        <div class="form-step" id="eStep2">
+          <h3 class="step-title">💼 Work Experience</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Current / Most Recent Company *</label>
+              <input type="text" id="e_company1" placeholder="e.g. Infosys Ltd." required />
+            </div>
+            <div class="form-group">
+              <label>Job Title *</label>
+              <input type="text" id="e_role1" placeholder="e.g. Software Engineer" required />
+            </div>
+            <div class="form-group">
+              <label>Duration *</label>
+              <input type="text" id="e_duration1" placeholder="Jan 2022 – Present" required />
+            </div>
+            <div class="form-group full-width">
+              <label>Key Responsibilities & Achievements</label>
+              <textarea id="e_resp1" rows="4" placeholder="• Led development of microservices reducing latency by 30%&#10;• Managed a team of 5 engineers..."></textarea>
+            </div>
+            <div class="form-group full-width"><div class="divider"></div></div>
+            <div class="form-group full-width">
+              <label>Previous Company</label>
+              <input type="text" id="e_company2" placeholder="e.g. Wipro Technologies" />
+            </div>
+            <div class="form-group">
+              <label>Job Title</label>
+              <input type="text" id="e_role2" placeholder="e.g. Junior Developer" />
+            </div>
+            <div class="form-group">
+              <label>Duration</label>
+              <input type="text" id="e_duration2" placeholder="Jun 2020 – Dec 2021" />
+            </div>
+            <div class="form-group full-width">
+              <label>Key Responsibilities & Achievements</label>
+              <textarea id="e_resp2" rows="3" placeholder="Describe your responsibilities and key wins..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Skills & Education -->
+        <div class="form-step" id="eStep3">
+          <h3 class="step-title">⚡ Skills & Education</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Technical Skills *</label>
+              <input type="text" id="e_skills" placeholder="Java, Spring Boot, AWS, Docker, Kubernetes..." required />
+              <small>Comma separated</small>
+            </div>
+            <div class="form-group full-width">
+              <label>Tools & Technologies</label>
+              <input type="text" id="e_tools" placeholder="JIRA, Git, Jenkins, Postman, Figma..." />
+            </div>
+            <div class="form-group full-width">
+              <label>Soft Skills</label>
+              <input type="text" id="e_softskills" placeholder="Team Leadership, Agile, Stakeholder Management..." />
+            </div>
+            <div class="form-group full-width"><div class="divider"></div></div>
+            <div class="form-group full-width">
+              <label>Highest Education Degree</label>
+              <input type="text" id="e_degree" placeholder="e.g. B.Tech Computer Science – IIT Delhi (2020)" />
+            </div>
+            <div class="form-group full-width">
+              <label>Certifications</label>
+              <textarea id="e_certs" rows="3" placeholder="AWS Solutions Architect – Associate (2023)&#10;PMP Certified – 2022&#10;Google Cloud Professional"></textarea>
+              <small>One per line</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Achievements & Projects -->
+        <div class="form-step" id="eStep4">
+          <h3 class="step-title">🏆 Achievements & Projects</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Key Achievements (with metrics)</label>
+              <textarea id="e_achievements" rows="4" placeholder="• Increased revenue by 25% via product optimization&#10;• Reduced deployment time from 4hrs to 30 mins&#10;• Mentored 10+ junior developers"></textarea>
+              <small>Use bullet points with numbers/metrics for impact</small>
+            </div>
+            <div class="form-group full-width">
+              <label>Notable Projects</label>
+              <textarea id="e_projects" rows="4" placeholder="Project: Payment Gateway Integration&#10;Led the end-to-end integration of Razorpay saving $50K annually..."></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label>Leadership / Volunteering</label>
+              <textarea id="e_leadership" rows="3" placeholder="Tech Lead – Internal Hackathon 2023&#10;Speaker – DevConf India 2022"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5: Career Summary -->
+        <div class="form-step" id="eStep5">
+          <h3 class="step-title">🎯 Career Summary & Preferences</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Target Role / Next Position *</label>
+              <input type="text" id="e_target_role" placeholder="e.g. Senior Manager, Principal Engineer..." required />
+            </div>
+            <div class="form-group">
+              <label>Desired Package (CTC)</label>
+              <input type="text" id="e_ctc" placeholder="e.g. 25 LPA" />
+            </div>
+            <div class="form-group">
+              <label>Notice Period</label>
+              <input type="text" id="e_notice" placeholder="e.g. 30 days / Immediate" />
+            </div>
+            <div class="form-group full-width">
+              <label>Professional Summary</label>
+              <textarea id="e_summary" rows="4" placeholder="Write a 3-4 line professional summary or click AI Generate..."></textarea>
+            </div>
+            <div class="form-group full-width">
+              <button type="button" class="btn-ai-generate exp-ai-btn" onclick="generateSummary()">
+                <span>✨ Generate Career Summary with AI</span>
+              </button>
+            </div>
+            <div class="form-group full-width">
+              <label>Preferred Resume Template</label>
+              <div class="template-selector">
+                <div class="tmpl-option active" onclick="selectTemplate(this, 'executive')" data-template="executive">
+                  <div class="tmpl-preview executive-tmpl"></div>
+                  <span>Executive</span>
+                </div>
+                <div class="tmpl-option" onclick="selectTemplate(this, 'modern')" data-template="modern">
+                  <div class="tmpl-preview modern-tmpl"></div>
+                  <span>Modern</span>
+                </div>
+                <div class="tmpl-option" onclick="selectTemplate(this, 'impact')" data-template="impact">
+                  <div class="tmpl-preview impact-tmpl"></div>
+                  <span>Impact</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button type="button" class="btn-back" id="expBack" onclick="prevStep('exp')" style="display:none">← Back</button>
+          <button type="button" class="btn-next exp-next" id="expNext" onclick="nextStep('exp')">Next →</button>
+          <button type="button" class="btn-generate exp-generate" id="expGenerate" onclick="generateResume('exp')" style="display:none">
+            ✨ Generate Resume
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== SUCCESS MODAL ===== -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-box success-box">
+      <div class="success-animation">
+        <div class="success-ring"></div>
+        <div class="success-check">✓</div>
+      </div>
+      <h2 class="success-title">Resume Generated! 🎉</h2>
+      <p class="success-subtitle">Your AI-powered resume is ready. Download it in your preferred format.</p>
+      <div class="download-options">
+        <button class="btn-download pdf" onclick="downloadResume('pdf')">
+          <span class="dl-icon">📄</span>
+          <span>Download PDF</span>
+        </button>
+        <button class="btn-download word" onclick="downloadResume('word')">
+          <span class="dl-icon">📝</span>
+          <span>Download Word</span>
+        </button>
+      </div>
+      <button class="btn-ghost-close" onclick="closeModal('successModal')">Build Another Resume</button>
+    </div>
+  </div>
+
+  <!-- ===== FEATURES SECTION ===== -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Why ResumeAI</div>
+        <h2 class="section-title">Features Built to Get You Hired</h2>
+        <p class="section-subtitle">Everything you need to craft an incredible resume, powered by cutting-edge AI.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" id="feat1">
+          <div class="feature-icon-wrap" style="--feat-color: #6366f1;">
+            <span>🤖</span>
+          </div>
+          <h3>AI Content Generator</h3>
+          <p>Automatically generate professional objectives, summaries, and bullet points tailored to your role and industry.</p>
+        </div>
+        <div class="feature-card" id="feat2">
+          <div class="feature-icon-wrap" style="--feat-color: #ec4899;">
+            <span>🎯</span>
+          </div>
+          <h3>ATS Optimization</h3>
+          <p>Ensure your resume passes Applicant Tracking Systems with keyword suggestions and format optimization.</p>
+        </div>
+        <div class="feature-card" id="feat3">
+          <div class="feature-icon-wrap" style="--feat-color: #f59e0b;">
+            <span>⚡</span>
+          </div>
+          <h3>5-Minute Builder</h3>
+          <p>Our smart form guides you step-by-step. Fill in the details and we handle the formatting and design.</p>
+        </div>
+        <div class="feature-card" id="feat4">
+          <div class="feature-icon-wrap" style="--feat-color: #10b981;">
+            <span>📊</span>
+          </div>
+          <h3>Resume Score</h3>
+          <p>Get an instant score and actionable tips to make your resume stand out from thousands of applicants.</p>
+        </div>
+        <div class="feature-card" id="feat5">
+          <div class="feature-icon-wrap" style="--feat-color: #3b82f6;">
+            <span>🎨</span>
+          </div>
+          <h3>200+ Templates</h3>
+          <p>Choose from designer-crafted templates for every industry, role, and preference. Always pixel-perfect.</p>
+        </div>
+        <div class="feature-card" id="feat6">
+          <div class="feature-icon-wrap" style="--feat-color: #8b5cf6;">
+            <span>🔒</span>
+          </div>
+          <h3>Privacy First</h3>
+          <p>Your data is encrypted and never shared. You own your resume and your information, always.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEMPLATES SECTION ===== -->
+  <section class="templates-section" id="templates">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Resume Templates</div>
+        <h2 class="section-title">Pick Your Perfect Style</h2>
+        <p class="section-subtitle">Professionally designed templates for every career stage and industry.</p>
+      </div>
+      <div class="templates-tabs">
+        <button class="tab-btn active" id="tab-fresher" onclick="switchTab('fresher')">🎓 Fresher Templates</button>
+        <button class="tab-btn" id="tab-exp" onclick="switchTab('exp')">💼 Professional Templates</button>
+      </div>
+      <div class="templates-grid" id="fresherTemplates">
+        <div class="template-card" id="tmpl1">
+          <div class="template-thumb fresh-thumb-1">
+            <div class="thumb-header"></div>
+            <div class="thumb-body">
+              <div class="thumb-line"></div>
+              <div class="thumb-line short"></div>
+              <div class="thumb-section"></div>
+              <div class="thumb-chips"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <h4>Launchpad</h4>
+            <p>Clean & modern for CS/IT freshers</p>
+            <div class="template-tags"><span>Tech</span><span>Modern</span></div>
+          </div>
+          <button class="btn-use-template" onclick="openModule('fresher')">Use Template</button>
+        </div>
+        <div class="template-card" id="tmpl2">
+          <div class="template-thumb fresh-thumb-2">
+            <div class="thumb-sidebar"></div>
+            <div class="thumb-main">
+              <div class="thumb-line"></div>
+              <div class="thumb-line short"></div>
+              <div class="thumb-section"></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <h4>Sideline</h4>
+            <p>Two-column layout for visual impact</p>
+            <div class="template-tags"><span>Creative</span><span>Two-Column</span></div>
+          </div>
+          <button class="btn-use-template" onclick="openModule('fresher')">Use Template</button>
+        </div>
+        <div class="template-card" id="tmpl3">
+          <div class="template-thumb fresh-thumb-3">
+            <div class="thumb-header dark"></div>
+            <div class="thumb-body">
+              <div class="thumb-line"></div>
+              <div class="thumb-line short"></div>
+              <div class="thumb-section dark-sec"></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <h4>Eclipse</h4>
+            <p>Bold & striking for standout applications</p>
+            <div class="template-tags"><span>Bold</span><span>Creative</span></div>
+          </div>
+          <button class="btn-use-template" onclick="openModule('fresher')">Use Template</button>
+        </div>
+      </div>
+      <div class="templates-grid hidden" id="expTemplates">
+        <div class="template-card" id="tmpl4">
+          <div class="template-thumb exp-thumb-1">
+            <div class="thumb-header exp-h"></div>
+            <div class="thumb-body">
+              <div class="thumb-line"></div>
+              <div class="thumb-line short"></div>
+              <div class="thumb-exp-row"><span></span><div></div></div>
+              <div class="thumb-exp-row"><span></span><div></div></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <h4>Executive</h4>
+            <p>Authoritative & leadership-focused</p>
+            <div class="template-tags"><span>Professional</span><span>Leadership</span></div>
+          </div>
+          <button class="btn-use-template exp-use" onclick="openModule('experienced')">Use Template</button>
+        </div>
+        <div class="template-card" id="tmpl5">
+          <div class="template-thumb exp-thumb-2">
+            <div class="thumb-sidebar exp-side"></div>
+            <div class="thumb-main">
+              <div class="thumb-line"></div>
+              <div class="thumb-line short"></div>
+              <div class="thumb-section exp-sec"></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <h4>Pinnacle</h4>
+            <p>Premium two-column for senior roles</p>
+            <div class="template-tags"><span>Senior</span><span>Premium</span></div>
+          </div>
+          <button class="btn-use-template exp-use" onclick="openModule('experienced')">Use Template</button>
+        </div>
+        <div class="template-card" id="tmpl6">
+          <div class="template-thumb exp-thumb-3">
+            <div class="thumb-header accent"></div>
+            <div class="thumb-body">
+              <div class="thumb-line"></div>
+              <div class="thumb-metric-row"><span class="m-box"></span><span class="m-box"></span><span class="m-box"></span></div>
+              <div class="thumb-line short"></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <h4>Impact</h4>
+            <p>Metrics-first for high achievers</p>
+            <div class="template-tags"><span>Metrics</span><span>Impact</span></div>
+          </div>
+          <button class="btn-use-template exp-use" onclick="openModule('experienced')">Use Template</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Success Stories</div>
+        <h2 class="section-title">Loved by Job Seekers</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card" id="testi1">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"I was a fresher with zero experience. ResumeAI helped me highlight my projects and skills so well that I got 3 interview calls within a week!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #6366f1, #a855f7);">PS</div>
+            <div>
+              <strong>Priya Sharma</strong>
+              <span>B.Tech Graduate → Software Engineer at Wipro</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card" id="testi2">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The experienced module understood exactly what I needed. The AI-generated career summary was spot-on and helped me land a 40% salary hike."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #ec4899, #f97316);">RM</div>
+            <div>
+              <strong>Rahul Mehta</strong>
+              <span>5 YOE → Senior Engineer at Google India</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card" id="testi3">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Switching careers felt impossible until I used ResumeAI's Fresher module to repackage my transferable skills. Got hired in 2 weeks!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #10b981, #3b82f6);">AK</div>
+            <div>
+              <strong>Anjali Kumar</strong>
+              <span>Career Changer → Data Analyst at Swiggy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <div class="cta-bg">
+      <div class="orb orb-cta-1"></div>
+      <div class="orb orb-cta-2"></div>
+    </div>
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Land Your Dream Job?</h2>
+        <p>Join 50,000+ professionals who built their winning resume with ResumeAI</p>
+        <div class="cta-buttons">
+          <button class="btn-cta-fresher" onclick="openModule('fresher')">🎓 I'm a Fresher</button>
+          <button class="btn-cta-exp" onclick="openModule('experienced')">💼 I'm Experienced</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-brand">
+            <span class="brand-icon">⚡</span>
+            <span class="brand-text">Resume<span class="brand-accent">AI</span></span>
+          </div>
+          <p>The smartest way to build a resume that gets noticed. AI-powered, ATS-optimized, beautifully designed.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-btn" aria-label="GitHub">⌥</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#">Fresher Module</a></li>
+            <li><a href="#">Experience Module</a></li>
+            <li><a href="#">Templates</a></li>
+            <li><a href="#">AI Features</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Resume Tips</a></li>
+            <li><a href="#">Career Blog</a></li>
+            <li><a href="#">ATS Guide</a></li>
+            <li><a href="#">Interview Prep</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ResumeAI. All rights reserved. Built with ❤️ for job seekers everywhere.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== LOGIN MODAL ===== -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box login-box">
+      <button class="modal-close" onclick="closeLoginModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-icon">🔒</div>
+        <h2>Welcome Back</h2>
+        <p>Login to access your saved resumes</p>
+      </div>
+      <form class="modal-form" onsubmit="event.preventDefault(); alert('Sign-in services are currently under maintenance. Please try again later.');">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="name@company.com" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••" required />
+        </div>
+        <div class="login-options">
+          <label class="checkbox-label">
+            <input type="checkbox"> Remember me
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn-login-submit">Sign In</button>
+        <div class="auth-divider"><span>OR</span></div>
+        <button type="button" class="btn-ghost-close" onclick="window.location.href='https://accounts.google.com/'" style="width:100%; border:1px solid var(--border); margin-bottom: 1rem; cursor: pointer;">
+          <img src="https://www.svgrepo.com/show/355037/google.svg" width="18" height="18" style="margin-right:8px;"> Continue with Google
+        </button>
+      </form>
+      <p class="auth-footer">Don't have an account? <a href="#" onclick="closeLoginModal(); openRegisterModal();">Sign Up</a></p>
+    </div>
+  </div>
+
+  <!-- ===== REGISTER MODAL ===== -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal-box register-box">
+      <button class="modal-close" onclick="closeRegisterModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-icon">✨</div>
+        <h2>Create Account</h2>
+        <p>Join ResumeAI to build your dream career</p>
+      </div>
+      <form class="modal-form" onsubmit="event.preventDefault(); alert('Registration is currently in private beta. We will notify you when it opens!');">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="e.g. Rahul" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="e.g. Mehta" required />
+          </div>
+          <div class="form-group full-width">
+            <label>Email Address</label>
+            <input type="email" placeholder="name@email.com" required />
+          </div>
+          <div class="form-group full-width">
+            <label>Password</label>
+            <input type="password" placeholder="Create a strong password" required />
+          </div>
+        </div>
+        <button type="submit" class="btn-login-submit">Create Account</button>
+        <div class="auth-divider"><span>OR</span></div>
+        <button type="button" class="btn-ghost-close" onclick="window.location.href='https://accounts.google.com/'" style="width:100%; border:1px solid var(--border); margin-bottom: 1rem; cursor: pointer;">
+          <img src="https://www.svgrepo.com/show/355037/google.svg" width="18" height="18" style="margin-right:8px;"> Sign up with Google
+        </button>
+      </form>
+      <p class="auth-footer">Already have an account? <a href="#" onclick="closeRegisterModal(); openLoginModal();">Sign In</a></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
 </html>
