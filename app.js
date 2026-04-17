@@ -230,6 +230,17 @@ function generateResume(type) {
   }
 }
 
+function openLoginModal() {
+  const modal = document.getElementById('loginModal');
+  if(modal) modal.classList.add('active');
+}
+
+function closeLoginModal() {
+  const modal = document.getElementById('loginModal');
+  if(modal) modal.classList.remove('active');
+}
+
+// ==== DOWNLOAD LOGIC ====
 function downloadResume(format) {
   const btn = document.querySelector(`.btn-download.${format}`);
   if(!btn) return;
