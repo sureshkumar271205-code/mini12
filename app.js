@@ -240,6 +240,16 @@ function closeLoginModal() {
   if(modal) modal.classList.remove('active');
 }
 
+function openRegisterModal() {
+  const modal = document.getElementById('registerModal');
+  if(modal) modal.classList.add('active');
+}
+
+function closeRegisterModal() {
+  const modal = document.getElementById('registerModal');
+  if(modal) modal.classList.remove('active');
+}
+
 // ==== DOWNLOAD LOGIC ====
 function downloadResume(format) {
   const btn = document.querySelector(`.btn-download.${format}`);

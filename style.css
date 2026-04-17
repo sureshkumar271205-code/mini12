@@ -753,21 +753,12 @@ img { max-width: 100%; }
 }
 
 /* AUTH MODAL EXTRAS */
-.login-box {
+.login-box, .register-box {
   background: var(--bg-secondary) !important;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-glow-purple);
-  max-width: 450px;
-  overflow: hidden !important; /* Blue line/scrollbar-ah hide panna */
-}
-
-.login-box::-webkit-scrollbar {
-  display: none; /* Chrome/Safari la scrollbar-ah remove panna */
-}
-
-.login-box {
-  -ms-overflow-style: none;  /* IE/Edge */
-  scrollbar-width: none;  /* Firefox */
+  max-width: 480px;
+  overflow: hidden; /* Removes the blue scrollbar line */
 }
 
 .login-options {

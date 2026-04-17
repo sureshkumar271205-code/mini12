@@ -917,7 +917,45 @@
           <img src="https://www.svgrepo.com/show/355037/google.svg" width="18" height="18" style="margin-right:8px;"> Continue with Google
         </button>
       </form>
-      <p class="auth-footer">Don't have an account? <a href="#" onclick="alert('Registration is currently closed for beta testing.')">Sign Up</a></p>
+      <p class="auth-footer">Don't have an account? <a href="#" onclick="closeLoginModal(); openRegisterModal();">Sign Up</a></p>
+    </div>
+  </div>
+
+  <!-- ===== REGISTER MODAL ===== -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal-box register-box">
+      <button class="modal-close" onclick="closeRegisterModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-icon">✨</div>
+        <h2>Create Account</h2>
+        <p>Join ResumeAI to build your dream career</p>
+      </div>
+      <form class="modal-form" onsubmit="event.preventDefault(); alert('Registration is currently in private beta. We will notify you when it opens!');">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="e.g. Rahul" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="e.g. Mehta" required />
+          </div>
+          <div class="form-group full-width">
+            <label>Email Address</label>
+            <input type="email" placeholder="name@email.com" required />
+          </div>
+          <div class="form-group full-width">
+            <label>Password</label>
+            <input type="password" placeholder="Create a strong password" required />
+          </div>
+        </div>
+        <button type="submit" class="btn-login-submit">Create Account</button>
+        <div class="auth-divider"><span>OR</span></div>
+        <button type="button" class="btn-ghost-close" style="width:100%; border:1px solid var(--border); margin-bottom: 1rem;">
+          <img src="https://www.svgrepo.com/show/355037/google.svg" width="18" height="18" style="margin-right:8px;"> Sign up with Google
+        </button>
+      </form>
+      <p class="auth-footer">Already have an account? <a href="#" onclick="closeRegisterModal(); openLoginModal();">Sign In</a></p>
     </div>
   </div>
 
