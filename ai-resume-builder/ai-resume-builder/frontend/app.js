@@ -254,16 +254,29 @@ function closeRegisterModal() {
 function downloadResume(format) {
   const btn = document.querySelector(`.btn-download.${format}`);
   if(!btn) return;
-  const originalText = btn.innerHTML;
   
-  btn.innerHTML = '<span>🔄 Downloading...</span>';
+  // Real download logic using Blob
+  const resumeVersion = format.toUpperCase();
+  const content = `ResumeAI Generated Content\nFormat: ${resumeVersion}\n\nThis is a sample downloaded ${resumeVersion} file from ResumeAI.\nIntegration with real PDF generation is ready for backend connection.`;
+  const blob = new Blob([content], { type: format === 'pdf' ? 'application/pdf' : 'application/msword' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  
+  a.style.display = 'none';
+  a.href = url;
+  a.download = `My_Resume_ResumeAI.${format === 'pdf' ? 'pdf' : 'doc'}`;
+  document.body.appendChild(a);
+  a.click();
+  
+  window.URL.revokeObjectURL(url);
+  
+  // Show UI complete state
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<span>✅ Downloading Started...</span>';
   btn.style.opacity = '0.8';
   
   setTimeout(() => {
-    btn.innerHTML = '<span>✅ Download Complete</span>';
-    setTimeout(() => {
-      btn.innerHTML = originalText;
-      btn.style.opacity = '1';
-    }, 2000);
-  }, 800);
+    btn.innerHTML = originalText;
+    btn.style.opacity = '1';
+  }, 2000);
 }
